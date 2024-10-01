@@ -25,9 +25,9 @@ reverseMethod param = pure do
 $(tagMethod "reverse" ''App 'reverseMethod)
 
 main :: IO ()
-main = runApp do
+main = do
 
-  print =<< do
+  print =<< runApp do
     runOnValue methodMap Nothing $ object
       [ "jsonrpc" .= String "2.0"
       , "id" .= Number 1
@@ -35,7 +35,7 @@ main = runApp do
       , "params" .= object ["string" .= String "123"]
       ]
 
-  print =<< do
+  print =<< runApp do
     runOnValue methodMap Nothing $ object
       [ "jsonrpc" .= String "2.0"
       , "id" .= Number 1
@@ -43,14 +43,14 @@ main = runApp do
       , "params" .= Array (V.fromList [String "123"])
       ]
 
-  print =<< do
+  print =<< runApp do
     runOnValue methodMap Nothing $ object
       [ "jsonrpc" .= String "2.0"
       , "id" .= Number 1
       , "method" .= String "reverse"
       ]
 
-  print =<< do
+  print =<< runApp do
     runOnValue methodMap Nothing $ object
       [ "jsonrpc" .= String "2.0"
       , "method" .= String "reverse"
