@@ -22,6 +22,7 @@ reverseMethod param = pure do
     Just (String s) -> Right $ String $ T.reverse s
     Nothing -> Left $ makeCustomError "empty" Nothing 400
     _ -> Left $ makeCustomError "wrong json" Nothing 400
+$(tagMethod "reverse" ''App 'reverseMethod)
 
 main :: IO ()
 main = runApp do
